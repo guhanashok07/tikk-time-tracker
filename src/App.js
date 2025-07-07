@@ -97,7 +97,7 @@ const App = ({ logs, setLogs, categories, setCategories, onNavigate }) => {
   const [showAddCategory, setShowAddCategory] = useState(false);
   const [editingLogId, setEditingLogId] = useState(null); // This is for logs, not categories
   const [editedDescription, setEditedDescription] = useState('');
-  const [editedCategory, setEditedCategory] = useState('');
+  const [editedCategory, setEditedCategory] = ''; // Stores icon name
   // Removed showLogs state as per request to always show logs
   const [showIconPicker, setShowIconPicker] = useState(false); // Changed from showEmojiPicker
   const [isManagingCategories, setIsManagingCategories] = useState(false); // New state for category management mode
