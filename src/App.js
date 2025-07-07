@@ -89,11 +89,7 @@ const AVAILABLE_ICONS = [
 const App = ({ logs, setLogs, categories, setCategories, onNavigate }) => {
   const [isRunning, setIsRunning] = useState(false);
   const [elapsedTime, setElapsedTime] = useState(0);
-<<<<<<< HEAD
-  const [startTime, setStartTime] = useState(null); // Corrected: useState(null)
-=======
   const [startTime, setStartTime] = useState(null);
->>>>>>> 89442a839dabe057b1c703a82857d50dc517453a
   const [description, setDescription] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [newCategoryName, setNewCategoryName] = useState('');
@@ -101,11 +97,7 @@ const App = ({ logs, setLogs, categories, setCategories, onNavigate }) => {
   const [showAddCategory, setShowAddCategory] = useState(false);
   const [editingLogId, setEditingLogId] = useState(null); // This is for logs, not categories
   const [editedDescription, setEditedDescription] = useState('');
-<<<<<<< HEAD
-  const [editedCategory, setEditedCategory] = useState(''); // Corrected: useState('')
-=======
-  const [editedCategory, setEditedCategory] = ''; // Stores icon name
->>>>>>> 89442a839dabe057b1c703a82857d50dc517453a
+  const [editedCategory, setEditedCategory] = useState(''); // Stores icon name
   // Removed showLogs state as per request to always show logs
   const [showIconPicker, setShowIconPicker] = useState(false); // Changed from showEmojiPicker
   const [isManagingCategories, setIsManagingCategories] = useState(false); // New state for category management mode
@@ -459,9 +451,9 @@ const App = ({ logs, setLogs, categories, setCategories, onNavigate }) => {
                         </div>
                         {showIconPicker && (
                           <div ref={iconPickerRef} className="absolute z-10 top-full left-0 mt-2 bg-white border border-gray-300 rounded-lg shadow-lg p-2 grid grid-cols-5 gap-1 max-h-48 overflow-y-auto">
-                            {AVAILABLE_ICONS.map((icon, index) => (
+                            {AVAILABLE_ICONS.map((icon) => ( // Removed index, using icon.id for key
                               <span
-                                key={index}
+                                key={icon.id} // Using icon.id as key
                                 className="cursor-pointer p-1 hover:bg-gray-100 rounded-md text-xl text-center flex items-center justify-center"
                                 onClick={() => {
                                   setTempCategoryIcon(icon.id);
@@ -554,9 +546,9 @@ const App = ({ logs, setLogs, categories, setCategories, onNavigate }) => {
                   </div>
                   {showIconPicker && (
                     <div ref={iconPickerRef} className="absolute z-10 top-full left-0 mt-2 bg-white border border-gray-300 rounded-lg shadow-lg p-2 grid grid-cols-5 gap-1 max-h-48 overflow-y-auto">
-                      {AVAILABLE_ICONS.map((icon, index) => (
+                      {AVAILABLE_ICONS.map((icon) => ( // Removed index, using icon.id for key
                         <span
-                          key={index}
+                          key={icon.id} // Using icon.id as key
                           className="cursor-pointer p-1 hover:bg-gray-100 rounded-md text-xl text-center flex items-center justify-center"
                           onClick={() => {
                             setNewCategoryIcon(icon.id);
@@ -1000,11 +992,7 @@ const Dashboard = ({ logs, categories, onNavigate }) => {
             {/* Charts (Second vertical half, in a horizontal row) */}
             <div className="flex flex-col md:flex-row gap-8 w-full items-start">
               {/* Horizontal Bar Chart */}
-<<<<<<< HEAD
               <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200 flex-1 flex-col">
-=======
-              <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200 flex-1 flex flex-col">
->>>>>>> 89442a839dabe057b1c703a82857d50dc517453a
                 <h3 className="text-lg font-semibold text-gray-800 mb-4">Time per Category</h3>
                 <div className="flex-grow h-48"> {/* Explicit height for the chart area */}
                   <ResponsiveContainer width="100%" height="100%">
@@ -1025,11 +1013,7 @@ const Dashboard = ({ logs, categories, onNavigate }) => {
               </div>
 
               {/* Pie Chart and Legend Container */}
-<<<<<<< HEAD
               <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200 flex-1 flex-col">
-=======
-              <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200 flex-1 flex flex-col">
->>>>>>> 89442a839dabe057b1c703a82857d50dc517453a
                 <h3 className="text-lg font-semibold text-gray-800 mb-4">Category Distribution</h3>
                 <div className="flex-grow flex items-center justify-center h-48 pt-4"> {/* Explicit height for chart area, adjusted pt-4 */}
                   <ResponsiveContainer width="100%" height="100%">
@@ -1275,7 +1259,7 @@ const CalendarPage = ({ logs, categories, onNavigate, currentPage }) => { // Add
           <div className="md:col-span-1 font-bold text-gray-600">Time</div>
           <div className="md:col-span-1 font-bold text-gray-600">Activity</div>
           {timeSlots.map(slot => (
-            <React.Fragment key={slot}>
+            <React.Fragment key={slot}> {/* Added key to React.Fragment */}
               <div className="py-2 px-2 border-b border-gray-100 text-gray-500">{slot}</div>
               <div className="py-2 px-2 border-b border-gray-100">
                 {logsForDay.filter(log => new Date(log.timestamp).getHours() === parseInt(slot.split(':')[0]))
@@ -1394,12 +1378,12 @@ const CalendarPage = ({ logs, categories, onNavigate, currentPage }) => { // Add
       <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200 mt-4">
         <h3 className="text-lg font-semibold text-gray-800 mb-4">Month View</h3>
         <div className="grid grid-cols-7 text-center font-bold text-gray-700 mb-2">
-          {dayNames.map((day, index) => <div key={day + index}>{day}</div>)}
+          {dayNames.map((day) => <div key={day}>{day}</div>)} {/* Using day as key */}
         </div>
         <div className="grid grid-cols-7 gap-1">
           {allCells.map((day, index) => (
             <div
-              key={index}
+              key={day ? day.toISOString() : `empty-${index}`} // Use ISO string for Date objects, unique for empty
               className={`p-2 border border-gray-100 rounded-md h-20 flex flex-col items-center justify-center ${
                 day ? 'bg-gray-50 text-gray-800 cursor-pointer hover:bg-gray-100 transition-colors' : 'bg-gray-100 text-gray-400'
               } ${day && day.toDateString() === new Date().toDateString() ? 'border-gray-900 ring-2 ring-gray-900' : ''}`}
@@ -1421,20 +1405,20 @@ const CalendarPage = ({ logs, categories, onNavigate, currentPage }) => { // Add
       <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200 mt-4">
         <h3 className="text-lg font-semibold text-gray-800 mb-4">Year View</h3>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {months.map((month, monthIndex) => (
-            <div key={month.toDateString()} className="border border-gray-200 rounded-lg p-4 text-center bg-gray-50">
+          {months.map((month) => ( // Removed index, using month.toISOString() for key
+            <div key={month.toISOString()} className="border border-gray-200 rounded-lg p-4 text-center bg-gray-50">
               <h4 className="font-bold text-gray-700 mb-2">{month.toLocaleDateString('en-US', { month: 'long' })}</h4>
               <div className="grid grid-cols-7 text-xs text-gray-500">
-                {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, dayIndex) => <div key={day + dayIndex}>{day}</div>)}
+                {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day) => <div key={day}>{day}</div>)} {/* Using day as key */}
               </div>
               <div className="grid grid-cols-7 gap-1 text-xs mt-1">
-                {Array.from({ length: new Date(year, monthIndex + 1, 0).getDate() }, (_, i) => i + 1).map(dateNum => (
+                {Array.from({ length: new Date(year, month.getMonth() + 1, 0).getDate() }, (_, i) => i + 1).map(dateNum => (
                   <div
-                    key={dateNum}
+                    key={dateNum} // Using dateNum as key, unique within this month's days
                     className={`p-1 rounded-full cursor-pointer hover:bg-gray-200 transition-colors ${
-                      new Date(year, monthIndex, dateNum).toDateString() === new Date().toDateString() ? 'bg-gray-900 text-white' : ''
+                      new Date(year, month.getMonth(), dateNum).toDateString() === new Date().toDateString() ? 'bg-gray-900 text-white' : ''
                     }`}
-                    onClick={() => { setCurrentView('day'); setSelectedDate(new Date(year, monthIndex, dateNum)); }}
+                    onClick={() => { setCurrentView('day'); setSelectedDate(new Date(year, month.getMonth(), dateNum)); }}
                   >
                     {dateNum}
                   </div>
@@ -1461,11 +1445,7 @@ const CalendarPage = ({ logs, categories, onNavigate, currentPage }) => { // Add
         {/* Header Section */}
         <div className="text-center mb-16 mt-8">
           <h1 className="text-6xl font-thin text-gray-900 mb-2 tracking-tight" style={{ fontFamily: '"Dancing Script", cursive' }}>tikk</h1>
-<<<<<<< HEAD
           <p className="text-gray-700 text-lg font-normal">track how you spend time</p>
-=======
-          <p className="text-gray-700 text-lg font-normal">your time, visualized</p>
->>>>>>> 89442a839dabe057b1c703a82857d50dc517453a
         </div>
 
         {/* Calendar Controls */}
