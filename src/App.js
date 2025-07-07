@@ -89,7 +89,11 @@ const AVAILABLE_ICONS = [
 const App = ({ logs, setLogs, categories, setCategories, onNavigate }) => {
   const [isRunning, setIsRunning] = useState(false);
   const [elapsedTime, setElapsedTime] = useState(0);
+<<<<<<< HEAD
   const [startTime, setStartTime] = useState(null); // Corrected: useState(null)
+=======
+  const [startTime, setStartTime] = useState(null);
+>>>>>>> 89442a839dabe057b1c703a82857d50dc517453a
   const [description, setDescription] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [newCategoryName, setNewCategoryName] = useState('');
@@ -97,7 +101,11 @@ const App = ({ logs, setLogs, categories, setCategories, onNavigate }) => {
   const [showAddCategory, setShowAddCategory] = useState(false);
   const [editingLogId, setEditingLogId] = useState(null); // This is for logs, not categories
   const [editedDescription, setEditedDescription] = useState('');
+<<<<<<< HEAD
   const [editedCategory, setEditedCategory] = useState(''); // Corrected: useState('')
+=======
+  const [editedCategory, setEditedCategory] = ''; // Stores icon name
+>>>>>>> 89442a839dabe057b1c703a82857d50dc517453a
   // Removed showLogs state as per request to always show logs
   const [showIconPicker, setShowIconPicker] = useState(false); // Changed from showEmojiPicker
   const [isManagingCategories, setIsManagingCategories] = useState(false); // New state for category management mode
@@ -992,7 +1000,11 @@ const Dashboard = ({ logs, categories, onNavigate }) => {
             {/* Charts (Second vertical half, in a horizontal row) */}
             <div className="flex flex-col md:flex-row gap-8 w-full items-start">
               {/* Horizontal Bar Chart */}
+<<<<<<< HEAD
               <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200 flex-1 flex-col">
+=======
+              <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200 flex-1 flex flex-col">
+>>>>>>> 89442a839dabe057b1c703a82857d50dc517453a
                 <h3 className="text-lg font-semibold text-gray-800 mb-4">Time per Category</h3>
                 <div className="flex-grow h-48"> {/* Explicit height for the chart area */}
                   <ResponsiveContainer width="100%" height="100%">
@@ -1013,7 +1025,11 @@ const Dashboard = ({ logs, categories, onNavigate }) => {
               </div>
 
               {/* Pie Chart and Legend Container */}
+<<<<<<< HEAD
               <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200 flex-1 flex-col">
+=======
+              <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200 flex-1 flex flex-col">
+>>>>>>> 89442a839dabe057b1c703a82857d50dc517453a
                 <h3 className="text-lg font-semibold text-gray-800 mb-4">Category Distribution</h3>
                 <div className="flex-grow flex items-center justify-center h-48 pt-4"> {/* Explicit height for chart area, adjusted pt-4 */}
                   <ResponsiveContainer width="100%" height="100%">
@@ -1445,7 +1461,11 @@ const CalendarPage = ({ logs, categories, onNavigate, currentPage }) => { // Add
         {/* Header Section */}
         <div className="text-center mb-16 mt-8">
           <h1 className="text-6xl font-thin text-gray-900 mb-2 tracking-tight" style={{ fontFamily: '"Dancing Script", cursive' }}>tikk</h1>
+<<<<<<< HEAD
           <p className="text-gray-700 text-lg font-normal">track how you spend time</p>
+=======
+          <p className="text-gray-700 text-lg font-normal">your time, visualized</p>
+>>>>>>> 89442a839dabe057b1c703a82857d50dc517453a
         </div>
 
         {/* Calendar Controls */}
